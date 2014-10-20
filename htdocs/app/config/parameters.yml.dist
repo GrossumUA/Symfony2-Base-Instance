@@ -1,0 +1,19 @@
+parameters:
+    database_driver:   @database_driver@
+    database_host:     @database_host@
+    database_port:     @database_port@
+    database_name:     @database_name@
+    database_user:     @database_user@
+    database_password: @database_password@
+
+    mailer_transport:  @mailer_transport@
+    mailer_host:       @mailer_host@
+    mailer_user:       @mailer_user@
+    mailer_password:   @mailer_password@
+
+    locale:            @app_locale@
+    secret:            @app_secret@
+
+    debug_toolbar:          @app_debug_toolbar@
+    debug_redirects:        @app_debug_redirects@
+    use_assetic_controller: @app_use_assetic_controller@

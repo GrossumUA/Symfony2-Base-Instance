@@ -1,0 +1,11 @@
+.vagrant
+htdocs/app/cache
+htdocs/app/logs
+htdocs/web/bundles/*
+htdocs/app/bootstrap.php.cache
+htdocs/vendor
+htdocs/bin
+*~
+htdocs/web/uploads/
+.idea
+htdocs/app/config/build.properties

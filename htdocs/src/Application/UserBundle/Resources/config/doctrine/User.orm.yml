@@ -1,0 +1,51 @@
+Application\UserBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: Application\UserBundle\Entity\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            length: 255
+        usernameCanonical:
+            type: string
+            length: 255
+            column: username_canonical
+        email:
+            type: string
+            length: 255
+        emailCanonical:
+            type: string
+            length: 255
+            column: email_canonical
+        enabled:
+            type: boolean
+        locked:
+            type: boolean
+        salt:
+            type: string
+        password:
+            type: string
+        lastLogin:
+            type: datetime
+            column: last_login
+        confirmationToken:
+            type: string
+            nullable: true
+            column: confirmation_token
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+    lifecycleCallbacks:
+            prePersist: [setCreatedAtValue, setUpdatedAtValue]
+            preUpdate: [setUpdatedAtValue]
+

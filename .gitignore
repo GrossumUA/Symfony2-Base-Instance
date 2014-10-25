@@ -9,3 +9,4 @@ htdocs/bin
 htdocs/web/uploads/
 .idea
 htdocs/app/config/build.properties
+htdocs/app/config/parameters.yml

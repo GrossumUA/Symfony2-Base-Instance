@@ -22,7 +22,7 @@ Vagrant::configure("2") do |config|
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
 
-  config.vm.network :private_network, ip: "192.168.50.10"
+  config.vm.network :private_network, ip: "192.168.50.22"
 
   config.vm.provision :shell, path: "shell/start.sh"
   config.vm.provision :shell, path: "shell/project.sh"

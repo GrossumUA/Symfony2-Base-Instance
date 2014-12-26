@@ -365,7 +365,7 @@ class User
      */
     public function setCreatedAtValue()
     {
-        // Add your code here
+        $this->setCreatedAt(new \DateTime());
     }
 
     /**
@@ -373,6 +373,6 @@ class User
      */
     public function setUpdatedAtValue()
     {
-        // Add your code here
+        $this->setUpdatedAt(new \DateTime());
     }
 }

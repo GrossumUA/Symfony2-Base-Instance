@@ -1,4 +1,4 @@
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: #NEED TO ADD YOUR USER ENTITY CLASS
+    user_class: Application\UserBundle\Entity\User

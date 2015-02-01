@@ -35,6 +35,9 @@ Application\UserBundle\Entity\User:
         lastLogin:
             type: datetime
             column: last_login
+            nullable: true
+        roles:
+            type: array
         confirmationToken:
             type: string
             nullable: true

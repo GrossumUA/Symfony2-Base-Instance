@@ -3,76 +3,77 @@
 namespace Application\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * User
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      */
-    private $usernameCanonical;
+    protected $usernameCanonical;
 
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      */
-    private $emailCanonical;
+    protected $emailCanonical;
 
     /**
      * @var boolean
      */
-    private $enabled;
+    protected $enabled;
 
     /**
      * @var boolean
      */
-    private $locked;
+    protected $locked;
 
     /**
      * @var string
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @var string
      */
-    private $password;
+    protected $password;
 
     /**
      * @var \DateTime
      */
-    private $lastLogin;
+    protected $lastLogin;
 
     /**
      * @var string
      */
-    private $confirmationToken;
+    protected $confirmationToken;
 
     /**
      * @var \DateTime
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @var \DateTime
      */
-    private $updatedAt;
+    protected $updatedAt;
 
 
     /**
@@ -275,7 +276,7 @@ class User
      * @param \DateTime $lastLogin
      * @return User
      */
-    public function setLastLogin($lastLogin)
+    public function setLastLogin(\DateTime $lastLogin)
     {
         $this->lastLogin = $lastLogin;
 

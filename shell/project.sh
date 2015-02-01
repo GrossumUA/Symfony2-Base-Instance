@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECT_ROOT=/var/www/devBox/
+PROJECT_ROOT=/var/www/symfony/
 
 cd ${PROJECT_ROOT}
 composer install

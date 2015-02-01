@@ -1,6 +1,6 @@
 server {
-    server_name devbox.dev;
-    root /var/www/devBox/web;
+    server_name symfony.dev;
+    root /var/www/symfony/web;
 
     location / {
         # try to serve file directly, fallback to app.php
@@ -15,6 +15,6 @@ server {
         fastcgi_param HTTPS off;
     }
 
-    error_log /var/log/nginx/devbox.error.log;
-    access_log /var/log/nginx/devbox.access.log;
+    error_log /var/log/nginx/symfony.error.log;
+    access_log /var/log/nginx/symfony.access.log;
 }

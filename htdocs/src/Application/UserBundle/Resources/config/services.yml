@@ -1,4 +1,20 @@
 services:
-#    application_user.example:
-#        class: Application\UserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    application_user.user.manager:
+        class: Application\UserBundle\Entity\EntityManager\UserManager
+        arguments:
+           - @security.encoder_factory
+           - @fos_user.util.username_canonicalizer
+           - @fos_user.util.email_canonicalizer
+           - @fos_user.entity_manager
+           - %fos_user.model.user.class%
+
+    sonata.admin.user:
+        class: Application\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: group.user, label: "User" }
+        arguments:
+            - ~
+            - Application\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setUserManager, [@application_user.user.manager]]

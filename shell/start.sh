@@ -25,5 +25,13 @@ service php5-fpm restart
 cp /vagrant/configs/composer.phar /usr/local/bin/composer
 chmod 777 /usr/local/bin/composer
 
+#autocomplete symfony
+
+cp /vagrant/configs/symfony2-autocomplete.bash /etc/bash_completion.d/
+
+echo "if [ -e ~/symfony2-autocomplete.bash ]; then
+          . ~/symfony2-autocomplete.bash
+      fi" >> ~/.bashrc
+
 #ant
 apt-get -y install ant

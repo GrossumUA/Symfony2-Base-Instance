@@ -46,7 +46,7 @@
     </target>
 
     <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema, _load_fixtures" />
-    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, _update_schema, _load_fixtures" />
+    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, create_database" />
 
 
     <target name="_create_database" description="Create Db">
@@ -65,6 +65,7 @@
     <target name="_update_schema" description="Update schema">
         <exec executable="${basedir}/app/console">
             <arg value="doctrine:schema:update" />
+            <arg value="--force" />
         </exec>
     </target>
 

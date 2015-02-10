@@ -10,3 +10,5 @@ htdocs/web/uploads/
 .idea
 htdocs/app/config/build.properties
 htdocs/app/config/parameters.yml
+# Codeception
+htdocs/tests/_output

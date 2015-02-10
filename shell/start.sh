@@ -29,8 +29,8 @@ chmod 777 /usr/local/bin/composer
 
 cp /vagrant/configs/symfony2-autocomplete.bash /etc/bash_completion.d/
 
-echo "if [ -e ~/symfony2-autocomplete.bash ]; then
-          . ~/symfony2-autocomplete.bash
+echo "if [ -e /etc/bash_completion.d/symfony2-autocomplete.bash ]; then
+          . /etc/bash_completion.d/symfony2-autocomplete.bash
       fi" >> ~/.bashrc
 
 #ant

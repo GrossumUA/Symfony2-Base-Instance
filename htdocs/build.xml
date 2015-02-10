@@ -48,6 +48,15 @@
     <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema, _load_fixtures" />
     <target name="clear_database" description="Clear DataBase" depends="_drop_schema, create_database" />
 
+    <target name="create_mysql_database" description="Create mysql db">
+        <exec executable="mysqladmin">
+            <arg value="-h${db.host}" />
+            <arg value="-u${db.user}" />
+            <arg value="-p${db.password}" />
+            <arg value="create" />
+            <arg value="${db.name}" />
+        </exec>
+    </target>
 
     <target name="_create_database" description="Create Db">
         <exec executable="${basedir}/app/console">

@@ -3,8 +3,6 @@
 PROJECT_ROOT=/var/www/symfony/
 
 cd ${PROJECT_ROOT}
-ant install
+ant create_mysql_database
 composer install
-ant create_database
 ant build
-

@@ -48,7 +48,7 @@
     <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema, _load_fixtures" />
     <target name="clear_database" description="Clear DataBase" depends="_drop_schema, create_database" />
 
-    <target name="create_mysql_database" description="Create mysql db">
+    <target name="_create_database" description="Create mysql db">
         <exec executable="mysqladmin">
             <arg value="-h${db.host}" />
             <arg value="-u${db.user}" />
@@ -58,11 +58,11 @@
         </exec>
     </target>
 
-    <target name="_create_database" description="Create Db">
+<!--     <target name="create_database" description="Create Db">
         <exec executable="${basedir}/app/console">
             <arg value="doctrine:database:create" />
         </exec>
-    </target>
+    </target> -->
 
     <target name="_drop_schema" description="Drop Schema">
         <exec executable="${basedir}/app/console">
@@ -84,21 +84,21 @@
         </exec>
     </target>
 
-    <target name="_cache_dev" description="clear cache dev env">
+    <target name="_clear_cache_dev" description="clear cache dev env">
         <exec executable="${basedir}/app/console">
             <arg value="cache:clear" />
             <arg value="--env=dev" />
         </exec>
     </target>
 
-    <target name="_cache_prod" description="clear cache prod env">
+    <target name="_clear_cache_prod" description="clear cache prod env">
         <exec executable="${basedir}/app/console">
             <arg value="cache:clear" />
             <arg value="--env=prod" />
         </exec>
     </target>
 
-    <target name="cache" depends="_cache_dev, _cache_prod"/>
+    <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod"/>
     <target name="install" depends="_substitute_parameters_yml"/>
 
 
@@ -106,7 +106,7 @@
         install,
         create_database,
         assets,
-        cache
+        clear_cache
     "/>
 
 </project>

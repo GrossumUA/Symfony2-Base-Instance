@@ -5,5 +5,5 @@ PROJECT_ROOT=/var/www/symfony/
 cd ${PROJECT_ROOT}
 ant install
 ant create_database
-composer install
+COMPOSER_PROCESS_TIMEOUT=2000 composer install
 ant build

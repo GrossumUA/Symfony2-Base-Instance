@@ -22,11 +22,10 @@ service nginx restart
 service php5-fpm restart
 
 #composer
-cp /vagrant/configs/composer.phar /usr/local/bin/composer
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
 chmod 777 /usr/local/bin/composer
 
 #autocomplete symfony
-
 cp /vagrant/configs/symfony2-autocomplete.bash /etc/bash_completion.d/
 
 echo "if [ -e /etc/bash_completion.d/symfony2-autocomplete.bash ]; then

@@ -1,30 +1,32 @@
     # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'yaml'
+configValues = YAML.load_file("configs/config.yml")
+vmData = configValues['vm']
+mysqlData = configValues['database']
+
 Vagrant::configure("2") do |config|
 
  config.vm.provider :virtualbox do |vb|
     vb.customize [
       "modifyvm", :id,
-      "--memory", "2048",
-      "--cpus", "2",
-      "--ioapic", "on"
+      "--memory", "#{vmData['memory']}",
+      "--cpus", "#{vmData['cpus']}",
+      "--ioapic", "#{vmData['ioapic']}"
       ]
     end
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "#{vmData['box']}"
 
-  config.vm.hostname = "symfony.dev"
-  config.vm.synced_folder "htdocs", "/var/www/symfony", type: "nfs"
+  config.vm.hostname = "#{vmData['host_name']}"
+  config.vm.synced_folder "#{vmData['synced_folder_from']}", "#{vmData['synced_folder_to']}", type: "#{vmData['synced_folder_type']}"
 
-  # Assign this VM to a host-only network IP, allowing you to access it
-  # via the IP. Host-only networks can talk to the host machine as well as
-  # any other machines on the same network, but cannot be accessed (through this
-  # network interface) by any external networks.
-
-  config.vm.network :private_network, ip: "192.168.50.11"
+  config.vm.network :private_network, ip: "#{vmData['network_ip']}"
 
   config.vm.provision :shell, path: "shell/start.sh"
-  config.vm.provision :shell, path: "shell/project.sh"
+  config.vm.provision :shell, path: "shell/mysql.sh", args: ["#{mysqlData['root_password']}"]
+  config.vm.provision :shell, path: "shell/nginx.sh", args: ["#{vmData['host_name']}", "#{vmData['synced_folder_to']}"]
+  config.vm.provision :shell, path: "shell/project.sh", args: ["#{vmData['synced_folder_to']}"]
 
 end

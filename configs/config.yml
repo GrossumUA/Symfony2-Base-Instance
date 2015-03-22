@@ -1,0 +1,13 @@
+vm:
+    memory: 2048
+    cpus: 2
+    ioapic: "on"
+    box: ubuntu/trusty64
+    host_name: symfonytest.dev
+    synced_folder_from: htdocs
+    synced_folder_to: /var/www/symfony_test
+    synced_folder_type: nfs
+    network_ip: 192.168.33.33
+database:
+    root_password: root
+

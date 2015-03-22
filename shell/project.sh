@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECT_ROOT=/var/www/symfony/
+PROJECT_ROOT=$1
 
 cd ${PROJECT_ROOT}
 ant install

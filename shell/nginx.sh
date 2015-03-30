@@ -18,6 +18,8 @@ echo "server {
               fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
               fastcgi_param HTTPS off;
               fastcgi_read_timeout 600;
+              fastcgi_buffers 16 16k;
+              fastcgi_buffer_size 32k;
           }
 
           error_log /var/log/nginx/$1.error.log;

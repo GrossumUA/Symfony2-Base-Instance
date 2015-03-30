@@ -4,6 +4,8 @@ echo "server {
           server_name $1;
           root $2/web;
 
+          client_max_body_size 40m;
+
           location / {
               # try to serve file directly, fallback to app.php
               try_files \$uri /app.php\$is_args\$args;

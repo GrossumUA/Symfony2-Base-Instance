@@ -4,6 +4,8 @@ echo "server {
           server_name $1;
           root $2/web;
 
+          client_max_body_size 40m;
+
           location / {
               # try to serve file directly, fallback to app.php
               try_files \$uri /app.php\$is_args\$args;
@@ -16,6 +18,8 @@ echo "server {
               fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
               fastcgi_param HTTPS off;
               fastcgi_read_timeout 600;
+              fastcgi_buffers 16 16k;
+              fastcgi_buffer_size 32k;
           }
 
           error_log /var/log/nginx/$1.error.log;

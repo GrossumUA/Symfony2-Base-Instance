@@ -4,3 +4,13 @@ sonata_block:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
+sonata_admin:
+    title:      "Symfony-Base"
+    options:
+        pager_links: 10
+        title_mode: 'single_text'
+    templates:
+        layout: ApplicationSonataAdminBundle::standard_layout.html.twig
+        select: ApplicationSonataAdminBundle:CRUD:list__select.html.twig
+        user_block: ApplicationSonataAdminBundle:block:user_block.html.twig

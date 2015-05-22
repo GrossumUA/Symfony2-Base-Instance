@@ -5,12 +5,16 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 trait DisabledFunctionToRemoveAndCreateTrait
 {
+    use DisabledFunctionToRemoveTrait {
+        configureRoutes as configureRoutesDisabledRemove;
+    }
+
     /**
      * @param RouteCollection $collection
      */
     protected function configureRoutes(RouteCollection $collection)
     {
+        $this->configureRoutesDisabledRemove($collection);
         $collection->remove('create');
-        $collection->remove('delete');
     }
 }

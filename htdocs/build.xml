@@ -39,7 +39,8 @@
     </target>
 
     <target name="assets" description="Installing assets">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="assets:install" />
             <arg value="--symlink" />
         </exec>
@@ -65,34 +66,39 @@
     </target> -->
 
     <target name="_drop_schema" description="Drop Schema">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="doctrine:schema:drop" />
             <arg value="--force" />
         </exec>
     </target>
 
     <target name="_update_schema" description="Update schema">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="doctrine:schema:update" />
             <arg value="--force" />
         </exec>
     </target>
 
     <target name="_load_fixtures" description="Load fixtures">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="doctrine:fixtures:load" />
         </exec>
     </target>
 
     <target name="_clear_cache_dev" description="clear cache dev env">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="cache:clear" />
             <arg value="--env=dev" />
         </exec>
     </target>
 
     <target name="_clear_cache_prod" description="clear cache prod env">
-        <exec executable="${basedir}/app/console">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
             <arg value="cache:clear" />
             <arg value="--env=prod" />
         </exec>

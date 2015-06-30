@@ -7,7 +7,10 @@ vm:
     synced_folder_from: htdocs
     synced_folder_to: /var/www/symfony_test
     synced_folder_type: nfs
-    network_ip: 192.168.33.33
+    network_ip: 192.168.50.10
 database:
-    root_password: root
+    root_password: rootpwd
+xdebug:
+    remote_host: 192.168.50.1
+    idekey: XDEBUGIDEKEY
 

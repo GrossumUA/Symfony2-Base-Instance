@@ -11,6 +11,6 @@ sonata_admin:
         pager_links: 10
         title_mode: 'single_text'
     templates:
-        layout: ApplicationSonataAdminBundle::standard_layout.html.twig
-        select: ApplicationSonataAdminBundle:CRUD:list__select.html.twig
+        layout: ApplicationSonataAdminBundle::standard_layout_override.html.twig
+        select: ApplicationSonataAdminBundle:CRUD:list__select_override.html.twig
         user_block: ApplicationSonataAdminBundle:block:user_block.html.twig

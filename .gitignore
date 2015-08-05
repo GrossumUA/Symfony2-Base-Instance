@@ -13,4 +13,9 @@ htdocs/app/config/parameters.yml
 # Codeception
 htdocs/codeception.yml
 htdocs/tests/_output
+htdocs/tests/_support/AcceptanceTester.php
+htdocs/tests/_support/FunctionalTester.php
+htdocs/tests/_support/UnitTester.php
+htdocs/tests/_support/_generated
+
 configs/config.yml

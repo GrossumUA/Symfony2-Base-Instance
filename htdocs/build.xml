@@ -53,7 +53,7 @@
         <exec executable="mysqladmin">
             <arg value="-h${db.host}" />
             <arg value="-u${db.user}" />
-            <arg value="-p${db.password}" />
+            <arg value="--password=${db.password}" />
             <arg value="create" />
             <arg value="${db.name}" />
         </exec>
@@ -103,8 +103,16 @@
             <arg value="--env=prod" />
         </exec>
     </target>
+    
+    <target name="_clear_cache_test" description="clear cache test env">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
+            <arg value="cache:clear" />
+            <arg value="--env=test" />
+        </exec>
+    </target>
 
-    <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod"/>
+    <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod, _clear_cache_test"/>
     <target name="install" depends="_substitute_parameters_yml"/>
 
 

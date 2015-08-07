@@ -1,0 +1,32 @@
+language: php
+sudo: false
+cache:
+  directories:
+    - vendor
+php:
+ - 5.4
+ - 5.5
+ - 5.6
+ - 7.0
+ - hhvm
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+    - php: 7.0
+
+before_script:
+ - phpenv config-add travis.php.ini
+ - cd htdocs
+ - mysql -e 'create database symfony;'
+ - sh -c 'sed -i "s/db.password=root/db.password=/" app/config/default.properties'
+ - cp codeception.yml.dist codeception.yml
+ - ant install
+ - travis_retry composer selfupdate
+ - travis_retry composer install --no-interaction
+ - ant build
+ - php bin/codecept build
+
+script:
+ - php bin/codecept run

@@ -10,7 +10,7 @@ class AuthorizationPage
     public static $USERNAME_FIELD = '#username';
     public static $PASSWORD_FIELD = '#password';
 
-    public static $USERNAME = 'admin@admin.com';
+    public static $USERNAME = 'admin';
     public static $PASSWORD = 'admin';
 
     public static $BAD_USERNAME = 'badAdmin';

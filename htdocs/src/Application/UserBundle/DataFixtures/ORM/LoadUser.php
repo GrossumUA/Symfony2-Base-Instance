@@ -53,21 +53,17 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
 
         $userManager = $this->container->get('application_user.user.manager');
 
+        /** @var User $user */
+        $user = $userManager->createUser();
+        $user->setUsername($adminUserName)
+            ->setEmail($adminEmail)
+            ->setPlainPassword($adminPassword)
+            ->setEnabled(true)
+            ->setRoles(['ROLE_SUPER_ADMIN']);
 
-        $user = new User();
-        $user->setEmail($adminEmail);
-        $user->setUsername($adminUserName);
-        $user->setEnabled(true);
-        $user->setLocked(false);
-        $user->setSalt(md5(uniqid()));
-        $user->setPlainPassword($adminPassword);
-        $user->setRoles(['ROLE_SUPER_ADMIN']);
+        $userManager->updateUser($user);
 
-        $userManager->updatePassword($user);
-        $userManager->updateCanonicalFields($user);
-
-        $manager->persist($user);
-        $manager->flush($user);
+        return $user;
     }
 
     /**

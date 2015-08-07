@@ -47,7 +47,7 @@
     </target>
 
     <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema, _load_fixtures" />
-    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, create_database" />
+    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, _update_schema, _load_fixtures" />
 
     <target name="_create_database" description="Create mysql db">
         <exec executable="mysqladmin">

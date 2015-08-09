@@ -13,7 +13,10 @@ class AuthorizationCest
     {
         $I->amOnPage(AuthorizationPage::$LOGOUT_URL);
         $I->amOnPage(AuthorizationPage::$DASHBOARD_URL);
-        $I->dontSee(AuthorizationPage::$SEE_ELEMENT_ON_DASHBOARD);
+        $I->dontSee(
+            AuthorizationPage::$SEE_ELEMENT_ON_DASHBOARD,
+            AuthorizationPage::$SELECTOR_ELEMENT_ON_DASHBOARD
+        );
     }
 
     /**
@@ -25,7 +28,10 @@ class AuthorizationCest
         $this->setFormFields($I, AuthorizationPage::$USERNAME, AuthorizationPage::$PASSWORD);
         $I->expect(AuthorizationPage::$EXPECT_SUCCESS_LOGIN);
         $I->amOnPage(AuthorizationPage::$DASHBOARD_URL);
-        $I->see(AuthorizationPage::$SEE_ELEMENT_ON_DASHBOARD);
+        $I->see(
+            AuthorizationPage::$SEE_ELEMENT_ON_DASHBOARD,
+            AuthorizationPage::$SELECTOR_ELEMENT_ON_DASHBOARD
+        );
     }
 
     public function authWithBadCredentials(FunctionalTester $I)
@@ -41,6 +47,4 @@ class AuthorizationCest
         $I->fillField(AuthorizationPage::$PASSWORD_FIELD, $password);
         $I->click(AuthorizationPage::$SUBMIT_BUTTON);
     }
-
-
 }

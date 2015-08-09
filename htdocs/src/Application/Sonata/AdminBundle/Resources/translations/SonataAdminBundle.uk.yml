@@ -1,0 +1,13 @@
+add_new_entry: 'Додати новий запис'
+confirm_exit: 'Підтвердити вихід'
+btn_update_acl: 'Оновлення ACL'
+flash_acl_edit_success: 'Успіх! ACL відредаговано.'
+link_action_acl: 'Повернутись до списку ACL'
+link_edit_acl: 'Редагувати ACL'
+link_actions: 'Повернутись до списку дій'
+list_select: 'Список виборів'
+no_results_found: 'Нічого не знайдено'
+search_placeholder: Пошук
+short_object_description_placeholder: 'Короткий опис об''єкту'
+title_search_results: 'Результати пошуку'
+group.user: 'Користувач'

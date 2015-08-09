@@ -20,7 +20,7 @@ class AuthorizationPage
     public static $EXPECT_SUCCESS_LOGIN = 'I am redirected to admin dashboard';
     public static $EXPECT_ERROR_LOGIN = 'I am not redirected to admin dashboard';
 
-    public static $SEE_ELEMENT_ON_DASHBOARD = 'User';
+    public static $SEE_ELEMENT_ON_DASHBOARD = 'Пользователь';
     public static $SELECTOR_ELEMENT_ON_DASHBOARD = '//*/div/div[1]';
     public static $ERROR_FLASH_MESSAGE_ELEMENT = '.alert-error';
 

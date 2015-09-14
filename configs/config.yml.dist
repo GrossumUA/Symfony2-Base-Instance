@@ -10,6 +10,7 @@ vm:
     network_ip: 192.168.50.10
 database:
     root_password: rootpwd
+    db_name: symfony_test
 xdebug:
     remote_host: 192.168.50.1
     idekey: XDEBUGIDEKEY

@@ -14,4 +14,3 @@ echo "zend_extension=/usr/lib/php5/20121212/xdebug.so
 echo "export PHP_IDE_CONFIG="serverName=$3"" >> /home/vagrant/.bashrc
 
 service php5-fpm restart
-

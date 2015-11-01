@@ -38,11 +38,18 @@
 
     </target>
 
-    <target name="assets" description="Installing assets">
+    <target name="assets" description="Installing assets symlink">
         <exec executable="php">
             <arg value="${basedir}/app/console" />
             <arg value="assets:install" />
             <arg value="--symlink" />
+        </exec>
+    </target>
+
+    <target name="assets_prod" description="Installing assets for production">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
+            <arg value="assets:install" />
         </exec>
     </target>
 
@@ -58,12 +65,6 @@
             <arg value="${db.name}" />
         </exec>
     </target>
-
-<!--     <target name="create_database" description="Create Db">
-        <exec executable="${basedir}/app/console">
-            <arg value="doctrine:database:create" />
-        </exec>
-    </target> -->
 
     <target name="_drop_schema" description="Drop Schema">
         <exec executable="php">
@@ -103,7 +104,7 @@
             <arg value="--env=prod" />
         </exec>
     </target>
-    
+
     <target name="_clear_cache_test" description="clear cache test env">
         <exec executable="php">
             <arg value="${basedir}/app/console" />
@@ -115,6 +116,11 @@
     <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod, _clear_cache_test"/>
     <target name="install" depends="_substitute_parameters_yml"/>
 
+    <target name="prod" depends="
+        install,
+        assets_prod,
+        _clear_cache_prod
+    "/>
 
     <target name="build" depends="
         install,

@@ -14,10 +14,9 @@ matrix:
   fast_finish: true
   allow_failures:
     - php: hhvm
-    - php: 7.0
 
 before_script:
- - phpenv config-add travis.php.ini
+ - if [[ "$TRAVIS_PHP_VERSION" != 'hhvm' ]]; then phpenv config-add travis.php.ini; fi
  - cd htdocs
  - mysql -e 'create database symfony;'
  - sh -c 'sed -i "s/db.password=root/db.password=/" app/config/default.properties'

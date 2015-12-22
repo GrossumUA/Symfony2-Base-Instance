@@ -64,6 +64,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: false
+        naming_strategy: doctrine.orm.naming_strategy.underscore
         mappings:
             ApplicationUserBundle: ~
 

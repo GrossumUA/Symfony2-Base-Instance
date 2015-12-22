@@ -3,9 +3,10 @@
 
 namespace Application\UserBundle\Helper;
 
-class EmailHelper {
+class EmailHelper
+{
     /**
-     * @param $email
+     * @param string $email
      * @return bool|string
      */
     public static function validateEmail($email)

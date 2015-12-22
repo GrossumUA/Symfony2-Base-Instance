@@ -3,7 +3,9 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
@@ -11,6 +13,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class SecurityController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
     public function loginAction(Request $request)
     {
         $user = $this->container->get('security.token_storage')->getToken()->getUser();

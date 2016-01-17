@@ -1,8 +1,10 @@
 <?php
 
-
 namespace Application\UserBundle\Helper;
 
+/**
+ * Class EmailHelper
+ */
 class EmailHelper
 {
     /**

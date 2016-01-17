@@ -11,11 +11,16 @@ use Sonata\AdminBundle\Validator\ErrorElement;
 use Application\UserBundle\Entity\EntityManager\UserManager;
 use Application\UserBundle\Entity\User;
 
+/**
+ * Class UserAdmin
+ */
 class UserAdmin extends Admin
 {
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
-    /** @var UserManager $userManager */
+    /**
+     * @var UserManager $userManager
+     */
     protected $userManager;
 
     /**

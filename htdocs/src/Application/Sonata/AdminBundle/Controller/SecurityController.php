@@ -11,6 +11,9 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class SecurityController
+ */
 class SecurityController extends Controller
 {
     /**

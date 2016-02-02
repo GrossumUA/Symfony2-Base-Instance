@@ -16,3 +16,26 @@ sonata_admin:
         layout: ApplicationSonataAdminBundle::standard_layout_override.html.twig
         select: ApplicationSonataAdminBundle:CRUD:list__select_override.html.twig
         user_block: ApplicationSonataAdminBundle:block:user_block.html.twig
+
+sonata_media:
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.image
+            formats:
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     true
+
+    providers:
+        image:
+            resizer: sonata.media.resizer.square

@@ -15,7 +15,9 @@ class UserAdmin extends Admin
 {
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
-    /** @var UserManager $userManager */
+    /**
+     * @var UserManager $userManager
+     */
     protected $userManager;
 
     /**

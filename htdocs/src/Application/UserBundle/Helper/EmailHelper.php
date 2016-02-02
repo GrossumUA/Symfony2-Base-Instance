@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Application\UserBundle\Helper;
 
 class EmailHelper

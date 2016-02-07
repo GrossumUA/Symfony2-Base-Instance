@@ -18,3 +18,23 @@ services:
             - ~
         calls:
             - [ setUserManager, [@application_user.user.manager]]
+
+    application.form.registration:
+        class: Application\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: application_user_registration }
+
+    application.registration.form:
+        factory: [@form.factory, createNamed]
+        class: Symfony\Component\Form\Form
+        arguments:
+            - %fos_user.registration.form.name%
+            - @application.form.registration
+            - null
+            - validation_groups: %fos_user.registration.form.validation_groups%
+
+    application.form.handler.registration:
+        class: FOS\UserBundle\Form\Handler\RegistrationFormHandler
+        arguments: ["@application.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator"]
+        scope: request
+        public: false

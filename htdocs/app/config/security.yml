@@ -23,7 +23,7 @@ security:
                 provider: fos_userbundle
                 check_path: /login_check
                 login_path: /admin/login
-                csrf_provider: security.csrf.token_manager
+                csrf_token_generator: security.csrf.token_manager
             logout:       true
             anonymous:    true
 

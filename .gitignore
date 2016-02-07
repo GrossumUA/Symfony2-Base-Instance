@@ -13,12 +13,5 @@ htdocs/vendor
 htdocs/web/bundles/*
 htdocs/web/uploads/
 *~
-# Codeception
-htdocs/codeception.yml
-htdocs/tests/_output
-htdocs/tests/_support
-htdocs/tests/acceptance/AcceptanceTester.php
-htdocs/tests/functional/FunctionalTester.php
-htdocs/tests/unit/UnitTester.php
 
 configs/config.yml

@@ -6,3 +6,5 @@ fos_user:
         form:
             handler: application.form.handler.registration
             type: application_user_registration
+    service:
+        user_manager: application_user.user.manager

@@ -28,13 +28,13 @@ services:
         factory: ['@form.factory', createNamed]
         class: Symfony\Component\Form\Form
         arguments:
-            - %fos_user.registration.form.name%
+            - '%fos_user.registration.form.name%'
             - '@application.form.registration'
             - null
-            - validation_groups: %fos_user.registration.form.validation_groups%
+            - validation_groups: '%fos_user.registration.form.validation_groups%'
 
     application.form.handler.registration:
         class: FOS\UserBundle\Form\Handler\RegistrationFormHandler
-        arguments: ["@application.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator"]
+        arguments: ['@application.registration.form', '@request', '@fos_user.user_manager', '@fos_user.mailer', '@fos_user.util.token_generator']
         scope: request
         public: false

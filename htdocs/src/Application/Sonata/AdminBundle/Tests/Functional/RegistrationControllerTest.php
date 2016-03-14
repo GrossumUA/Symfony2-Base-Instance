@@ -80,39 +80,39 @@ class RegistrationControllerTest extends WebTestCase
     {
         return [
             'empty username, email and password' => [
-                '',
-                '',
-                '',
-                '',
-                3
+                'username'       => '',
+                'email'          => '',
+                'password'       => '',
+                'repeatPassword' => '',
+                'countErrors'    => 3
             ],
             'empty email and password' => [
-                'test',
-                '',
-                '',
-                '',
-                2
+                'username'       => 'test',
+                'email'          => '',
+                'password'       => '',
+                'repeatPassword' => '',
+                'countErrors'    => 2
             ],
             'empty password' => [
-                'test',
-                'test@test.com',
-                '',
-                '',
-                1
+                'username'       => 'test',
+                'email'          => 'test@test.com',
+                'password'       => '',
+                'repeatPassword' => '',
+                'countErrors'    => 1
             ],
             'incorrect email' => [
-                'test',
-                'test',
-                '123',
-                '123',
-                1
+                'username'       => 'test',
+                'email'          => 'test',
+                'password'       => '123',
+                'repeatPassword' => '123',
+                'countErrors'    => 1
             ],
             'password do not much' => [
-                'test',
-                'test@test.com',
-                '321',
-                '123',
-                1
+                'username'       => 'test',
+                'email'          => 'test@test.com',
+                'password'       => '321',
+                'repeatPassword' => '123',
+                'countErrors'    => 1
             ]
         ];
     }

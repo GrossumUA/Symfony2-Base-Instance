@@ -39,16 +39,16 @@ class SecurityControllerTest extends AbstractLoginTest
     {
         return [
             'empty username and password' => [
-                '',
-                ''
+                'username' => '',
+                'password' => ''
             ],
             'empty password' => [
-                'test',
-                ''
+                'username' => 'test',
+                'password' => ''
             ],
             'empty username' => [
-                '',
-                'test'
+                'username' => '',
+                'password' => 'test'
             ]
         ];
     }

@@ -2,11 +2,11 @@ services:
     application_user.user.manager:
         class: Application\UserBundle\Entity\EntityManager\UserManager
         arguments:
-           - @security.encoder_factory
-           - @fos_user.util.username_canonicalizer
-           - @fos_user.util.email_canonicalizer
-           - @fos_user.entity_manager
-           - %fos_user.model.user.class%
+           - '@security.encoder_factory'
+           - '@fos_user.util.username_canonicalizer'
+           - '@fos_user.util.email_canonicalizer'
+           - '@fos_user.entity_manager'
+           - '%fos_user.model.user.class%'
 
     sonata.admin.user:
         class: Application\UserBundle\Admin\UserAdmin
@@ -17,4 +17,24 @@ services:
             - Application\UserBundle\Entity\User
             - ~
         calls:
-            - [ setUserManager, [@application_user.user.manager]]
+            - [ setUserManager, ['@application_user.user.manager']]
+
+    application.form.registration:
+        class: Application\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: application_user_registration }
+
+    application.registration.form:
+        factory: ['@form.factory', createNamed]
+        class: Symfony\Component\Form\Form
+        arguments:
+            - '%fos_user.registration.form.name%'
+            - '@application.form.registration'
+            - null
+            - validation_groups: '%fos_user.registration.form.validation_groups%'
+
+    application.form.handler.registration:
+        class: FOS\UserBundle\Form\Handler\RegistrationFormHandler
+        arguments: ['@application.registration.form', '@request', '@fos_user.user_manager', '@fos_user.mailer', '@fos_user.util.token_generator']
+        scope: request
+        public: false

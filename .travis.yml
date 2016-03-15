@@ -9,6 +9,10 @@ php:
  - 7.0
  - hhvm
 
+env:
+  global:
+    - SYMFONY_DEPRECATIONS_HELPER=weak
+
 matrix:
   fast_finish: true
   allow_failures:
@@ -19,12 +23,11 @@ before_script:
  - cd htdocs
  - mysql -e 'create database symfony;'
  - sh -c 'sed -i "s/db.password=root/db.password=/" app/config/default.properties'
- - cp codeception.yml.dist codeception.yml
+ - cp app/phpunit.xml.dist app/phpunit.xml
  - ant install
  - travis_retry composer selfupdate
  - travis_retry composer install --no-interaction
  - ant build
- - php bin/codecept build
 
 script:
- - php bin/codecept run
+ - phpunit -c app

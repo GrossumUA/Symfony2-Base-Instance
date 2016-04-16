@@ -16,18 +16,11 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
     /** @var  Registry */
     private $doctrine;
 
-    /**
-     * @var ContainerInterface
-     */
+    /** @var ContainerInterface */
     private $container;
 
-
     /**
-     * Sets the Container.
-     *
-     * @param ContainerInterface|null $container A ContainerInterface instance or null
-     *
-     * @api
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -36,15 +29,17 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
     }
 
     /**
-     * Load data fixtures with the passed EntityManager
-     *
-     * @param ObjectManager $manager
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
         $this->createAdminUser($manager);
     }
 
+    /**
+     * @param ObjectManager $manager
+     * @return User
+     */
     private function createAdminUser(ObjectManager $manager)
     {
         $adminEmail = 'admin@admin.com';
@@ -67,9 +62,7 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
     }
 
     /**
-     * Get the order of this fixture
-     *
-     * @return integer
+     * {@inheritdoc}
      */
     public function getOrder()
     {

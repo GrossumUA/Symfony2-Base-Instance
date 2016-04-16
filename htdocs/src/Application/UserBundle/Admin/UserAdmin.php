@@ -2,35 +2,35 @@
 
 namespace Application\UserBundle\Admin;
 
-
-use Application\UserBundle\Entity\EntityManager\UserManager;
-use Application\UserBundle\Entity\User;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 
+use Application\UserBundle\Entity\EntityManager\UserManager;
+use Application\UserBundle\Entity\User;
 
 class UserAdmin extends Admin
 {
-
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
-    /** @var  UserManager $userManager */
+    /**
+     * @var UserManager $userManager
+     */
     protected $userManager;
 
     /**
-     * Fields to be shown on create/edit forms
-     *
-     * @param FormMapper $formMapper
+     * {@inheritdoc}
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add('username', null, ['label' => 'Username', 'required' => true])
             ->add('email', 'email', ['label' => 'Email', 'required' => true])
-            ->add('plainPassword', 'password',
+            ->add(
+                'plainPassword',
+                'password',
                 [
                     'label' => 'Password',
                     'always_empty' => true,
@@ -38,14 +38,11 @@ class UserAdmin extends Admin
                 ]
             )
             ->add('enabled', null, ['label' => 'Enabled', 'required' => false])
-            ->add('locked', null, ['label' => 'Locked', 'required' => false])
-        ;
+            ->add('locked', null, ['label' => 'Locked', 'required' => false]);
     }
 
     /**
-     * Fields to be shown on filter forms
-     *
-     * @param DatagridMapper $datagridMapper
+     * {@inheritdoc}
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -53,14 +50,11 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('username')
             ->add('enabled')
-            ->add('locked')
-        ;
+            ->add('locked');
     }
 
     /**
-     * Fields to be shown on lists
-     *
-     * @param ListMapper $listMapper
+     * {@inheritdoc}
      */
     protected function configureListFields(ListMapper $listMapper)
     {
@@ -69,25 +63,28 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('username')
             ->add('enabled')
-            ->add('locked')
-        ;
+            ->add('locked');
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
-
     public function preUpdate($user)
     {
         $this->setMainFields($user);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function prePersist($user)
     {
         $this->setMainFields($user);
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function validate(ErrorElement $errorElement, $object)
     {
         $userByEmail = $this->userManager->findUserByEmail($object->getEmail());
@@ -101,7 +98,7 @@ class UserAdmin extends Admin
 
         $userByUsername = $this->userManager->findUserByUsername($object->getUsername());
 
-        if($userByUsername && $userByUsername->getId() != $object->getId()) {
+        if ($userByUsername && $userByUsername->getId() != $object->getId()) {
             $errorElement
                 ->with('username')
                 ->addViolation('Username already exist')
@@ -109,20 +106,24 @@ class UserAdmin extends Admin
         }
     }
 
-
+    /**
+     * @param UserManager $userManager
+     */
     public function setUserManager(UserManager $userManager)
     {
         $this->userManager = $userManager;
     }
 
+    /**
+     * @param User $user
+     */
     private function setMainFields(User $user)
     {
-        if($user->getPlainPassword()) {
+        if ($user->getPlainPassword()) {
             $this->userManager->updatePassword($user);
         }
-        if(!$user->hasRole(static::ROLE_ADMIN)) {
+        if (!$user->hasRole(static::ROLE_ADMIN)) {
             $user->addRole(static::ROLE_ADMIN);
         }
     }
-
 }

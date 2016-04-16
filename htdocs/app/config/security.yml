@@ -23,11 +23,11 @@ security:
                 provider: fos_userbundle
                 check_path: /login_check
                 login_path: /admin/login
-                csrf_provider: security.csrf.token_manager
+                csrf_token_generator: security.csrf.token_manager
             logout:       true
             anonymous:    true
 
     access_control:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/*, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_ADMIN }

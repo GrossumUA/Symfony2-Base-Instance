@@ -2,3 +2,6 @@ application_sonata_admin_login:
     path:     /admin/login
     defaults: { _controller: ApplicationSonataAdminBundle:Security:login }
 
+application_sonata_admin_register:
+    path:     /register
+    defaults: { _controller: ApplicationSonataAdminBundle:Registration:register }

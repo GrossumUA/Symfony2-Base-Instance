@@ -9,7 +9,6 @@
     <property name="basedir" value="${project.basedir}"/>
     <property name="composer" value="/usr/local/bin/composer"/>
 
-
     <target name="_substitute_parameters_yml">
 
         <filterset id="_parameters_yml_filter_set">
@@ -40,7 +39,7 @@
 
     </target>
 
-    <target name="assets" description="Installing assets">
+    <target name="assets" description="Installing assets symlink">
         <exec executable="php">
             <arg value="${basedir}/app/console" />
             <arg value="assets:install" />
@@ -48,7 +47,14 @@
         </exec>
     </target>
 
-    <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema" />
+    <target name="assets_prod" description="Installing assets for production">
+        <exec executable="php">
+            <arg value="${basedir}/app/console" />
+            <arg value="assets:install" />
+        </exec>
+    </target>
+
+    <target name="create_database" description="Create Db" depends="_create_database, _update_schema" />
     <target name="clear_database" description="Clear DataBase" depends="_drop_schema, _update_schema, load_fixtures" />
 
     <target name="_create_database" description="Create mysql db">
@@ -124,6 +130,12 @@
 
     <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod, _clear_cache_test"/>
     <target name="install" depends="_substitute_parameters_yml"/>
+
+    <target name="prod" depends="
+        install,
+        assets_prod,
+        _clear_cache_prod
+    "/>
 
     <target name="build" depends="
         install,

@@ -1,21 +1,17 @@
-.vagrant
-htdocs/app/cache
-htdocs/app/logs
-htdocs/web/bundles/*
-htdocs/app/bootstrap.php.cache
-htdocs/vendor
-htdocs/bin
-*~
-htdocs/web/uploads/
 .idea
+.vagrant
+htdocs/app/bootstrap.php.cache
+htdocs/app/cache
+!htdocs/app/cache/.gitkeep
 htdocs/app/config/build.properties
 htdocs/app/config/parameters.yml
-# Codeception
-htdocs/codeception.yml
-htdocs/tests/acceptance/AcceptanceTester.php
-htdocs/tests/functional/FunctionalTester.php
-htdocs/tests/unit/UnitTester.php
-htdocs/tests/_output
-htdocs/tests/_support
+htdocs/app/logs
+!htdocs/app/logs/.gitkeep
+htdocs/app/phpunit.xml
+htdocs/bin
+htdocs/vendor
+htdocs/web/bundles/*
+htdocs/web/uploads/
+*~
 
 configs/config.yml

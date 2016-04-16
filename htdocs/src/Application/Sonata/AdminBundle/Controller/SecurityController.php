@@ -3,7 +3,9 @@
 namespace Application\Sonata\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
@@ -11,12 +13,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class SecurityController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
     public function loginAction(Request $request)
     {
-        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         if ($user instanceof UserInterface) {
-            return $this->redirect($this->generateUrl('sonata_admin_dashboard'));
+            return $this->redirectToRoute('sonata_admin_dashboard');
         }
 
         /** @var SessionInterface $session */
@@ -39,7 +45,7 @@ class SecurityController extends Controller
         }
 
         return $this->render(
-            'ApplicationSonataAdminBundle:security:login.html.twig',
+            'ApplicationUserBundle:Login:login.html.twig',
             [
                 'error'         => $error,
                 'admin_pool'    => $this->container->get('sonata.admin.pool'),

@@ -2,3 +2,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Application\UserBundle\Entity\User
+    registration:
+        form:
+            handler: application.form.handler.registration
+            type: application_user_registration
+    service:
+        user_manager: application_user.user.manager

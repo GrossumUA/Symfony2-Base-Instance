@@ -29,6 +29,7 @@ Vagrant::configure("2") do |config|
   config.vm.provision :shell, path: "shell/mysql.sh", args: ["#{mysqlData['root_password']}"]
   config.vm.provision :shell, path: "shell/nginx.sh", args: ["#{vmData['host_name']}", "#{vmData['synced_folder_to']}"]
   config.vm.provision :shell, path: "shell/xdebug.sh", args: ["#{xdebug['remote_host']}", "#{xdebug['idekey']}", "#{vmData['host_name']}"]
+  config.vm.provision :shell, path: "shell/projectProperties.sh", args: ["#{mysqlData['db_name']}", "#{mysqlData['root_password']}", "#{vmData['synced_folder_to']}"]
   config.vm.provision :shell, path: "shell/project.sh", args: ["#{vmData['synced_folder_to']}"]
 
 end

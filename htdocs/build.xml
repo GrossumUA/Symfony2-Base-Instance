@@ -105,7 +105,7 @@
             <arg value="--env=prod" />
         </exec>
     </target>
-    
+
     <target name="_clear_cache_test" description="clear cache test env">
         <exec executable="php">
             <arg value="${basedir}/app/console" />
@@ -147,5 +147,4 @@
         load_fixtures,
         _clear_cache_prod
     "/>
-
 </project>

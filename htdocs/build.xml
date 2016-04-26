@@ -116,8 +116,11 @@
 
     <target name="composer_install" description="Run composer install">
         <exec executable="php">
+            <env key="COMPOSER_PROCESS_TIMEOUT" value="2000"/>
             <arg value="${composer}"/>
             <arg value="install"/>
+            <arg value="-n"/>
+            <arg value="-o"/>
         </exec>
     </target>
 
@@ -142,8 +145,7 @@
         create_database,
         composer_install,
         load_fixtures,
-        assets,
-        clear_cache
+        _clear_cache_prod
     "/>
 
 </project>

@@ -7,6 +7,7 @@
     <property file="app/config/default.properties"/>
 
     <property name="basedir" value="${project.basedir}"/>
+    <property name="composer" value="/usr/local/bin/composer"/>
 
     <target name="_substitute_parameters_yml">
 
@@ -53,8 +54,8 @@
         </exec>
     </target>
 
-    <target name="create_database" description="Create Db and load fixtures" depends="_create_database, _update_schema, _load_fixtures" />
-    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, _update_schema, _load_fixtures" />
+    <target name="create_database" description="Create Db" depends="_create_database, _update_schema" />
+    <target name="clear_database" description="Clear DataBase" depends="_drop_schema, _update_schema, load_fixtures" />
 
     <target name="_create_database" description="Create mysql db">
         <exec executable="mysqladmin">
@@ -82,7 +83,7 @@
         </exec>
     </target>
 
-    <target name="_load_fixtures" description="Load fixtures">
+    <target name="load_fixtures" description="Load fixtures">
         <exec executable="php">
             <arg value="${basedir}/app/console" />
             <arg value="doctrine:fixtures:load" />
@@ -113,6 +114,23 @@
         </exec>
     </target>
 
+    <target name="composer_install" description="Run composer install">
+        <exec executable="php">
+            <env key="COMPOSER_PROCESS_TIMEOUT" value="2000"/>
+            <arg value="${composer}"/>
+            <arg value="install"/>
+            <arg value="-n"/>
+            <arg value="-o"/>
+        </exec>
+    </target>
+
+    <target name="composer_update" description="Run composer update">
+        <exec executable="php">
+            <arg value="${composer}"/>
+            <arg value="update"/>
+        </exec>
+    </target>
+
     <target name="clear_cache" depends="_clear_cache_dev, _clear_cache_prod, _clear_cache_test"/>
     <target name="install" depends="_substitute_parameters_yml"/>
 
@@ -125,8 +143,8 @@
     <target name="build" depends="
         install,
         create_database,
-        assets,
-        clear_cache
+        composer_install,
+        load_fixtures,
+        _clear_cache_prod
     "/>
-
 </project>

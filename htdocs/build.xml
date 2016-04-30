@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 
-<project name="Symfony build" basedir=".">
+<project name="Symfony2 build" basedir=".">
 
-    <!--====================================== properties ======================================-->
     <property file="app/config/build.properties"/>
     <property file="app/config/default.properties"/>
 
     <property name="basedir" value="${project.basedir}"/>
     <property name="composer" value="/usr/local/bin/composer"/>
+
+    <property name="reportdir" value="${basedir}/app/reports"/>
+    <property name="confdir" value="${basedir}/app/csConfig"/>
+    <property name="srcdir" value="${basedir}/src"/>
 
     <target name="_substitute_parameters_yml">
 
@@ -147,4 +150,34 @@
         load_fixtures,
         _clear_cache_prod
     "/>
+
+    <target name="code-standards" description="Run code standards checks."
+            depends="prepare-reportdir,run-code-standards"/>
+
+    <!-- Create reportdir, otherwise phpcs will complain -->
+    <target name="prepare-reportdir">
+        <mkdir dir="${reportdir}"/>
+    </target>
+
+    <target name="run-code-standards" depends="run-phpcs,run-phpcpd,run-phpmd"/>
+
+    <target name="run-phpcs">
+        <exec dir="${basedir}" executable="phpcs" failonerror="true">
+            <arg line="--encoding=utf-8 --extensions=php --standard=${confdir}/phpcs.xml --report=junit
+                      --report-file=${reportdir}/phpcs.xml ${srcdir}"/>
+        </exec>
+    </target>
+
+    <target name="run-phpmd">
+        <exec dir="${basedir}" executable="phpmd" failonerror="true">
+            <arg line="${srcdir} xml ${confdir}/phpmd.xml --reportfile ${reportdir}/phpmd.xml"/>
+        </exec>
+    </target>
+
+    <target name="run-phpcpd">
+        <exec dir="${basedir}" executable="phpcpd" failonerror="true">
+            <arg line="--min-lines 25 --log-pmd ${reportdir}/phpcpd.xml --verbose"/>
+            <arg line="${srcdir}"/>
+        </exec>
+    </target>
 </project>

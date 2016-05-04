@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <ruleset name="Grossum">
-    <description>Oro Inc. coding standard.</description>
+    <description>Grossum coding standard.</description>
     <rule ref="PSR2"/>
 </ruleset>
